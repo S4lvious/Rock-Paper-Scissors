@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  </head>
+<body>
+
+  <header>
+    <h1>Rock, paper... or scissors?</h1>
+  </header>
+  <section class="container">
+  <div class="typed-out-text">
+    <h1>UNA GUERRA TRA COMPUTER ED ESSERI UMANI HA INIZIO...</h1>
+  </div>    
+  <div class="typed-out-text2">
+    <h1>SCEGLI LA TUA ARMA!</h1>
+  </div>    
+  </section>
+  <div class="game-container">
+
+  <div class = "input-container">
+    <input type="radio" class = "radio" name ="playerScelta" value="rock">
+      <div class = "radio-tyle-group">
+        <img src ="rock.png" width="112px" height="112px" >  
+      </div>
+  </div>
+
+  <div class = "input-container">
+    <input type="radio" class = "radio" name ="playerScelta" value="paper">
+      <div class = "radio-tyle-group">
+        <img src ="paper.png" width="112px" height="112px" >  
+      </div>
+  </div>
+
+  <div class = "input-container">
+    <input type="radio" class = "radio" name ="playerScelta" value="scissors">
+      <div class = "radio-tyle-group">
+        <img src ="scissors.png" width="112px" height="112px" >  
+      </div>
+  </div>
+
+</div>
+<section class="result-container">
+<div class="button-container">
+  <button class="play" onclick="playerChoice()" >SCEGLI</button>
+  <button class="reset" onclick="location.reload()">RESET</button>
+  </div>
+<div class="result">
+</div>
+</section>
+
+<script>
+
+let lastDiv;
+lastDiv = document.querySelector(".result");
+
+
+function playerChoice (){
+  event.preventDefault()
+  let checkPlayerChoice = [];
+  let playerChoice = "";
+  checkPlayerChoice = document.querySelectorAll(".radio");
+  for (let i=0; i<checkPlayerChoice.length; i++ ){
+    if(checkPlayerChoice[i].checked == true){
+      playerChoice = checkPlayerChoice[i].value;
+    }
+    
+  }
+  computerChoice(playerChoice);
+}
+
+function computerChoice (playerChoice) {
+  let computerChoice = Math.floor(Math.random()*3);
+  if (computerChoice === 0){
+    computerChoice = "rock";
+  }
+  else if (computerChoice === 1){
+    computerChoice = "paper";
+  }
+  
+  else if (computerChoice === 2){
+    computerChoice = "scissors";
+  }
+  
+  const p = document.createElement("p");
+  lastDiv.appendChild(p);
+  p.textContent = "Il computer ha scelto: " + computerChoice
+  
+  if (computerChoice == playerChoice){
+  const paragrafo = document.createElement("p");
+  lastDiv.appendChild(paragrafo);
+  paragrafo.textContent = "Pareggio"
+  }
+  else if (computerChoice == "rock" && playerChoice == "scissors" || computerChoice == "scissors" && playerChoice == "paper" || computerChoice == "paper" && playerChoice == "rock" ) {
+  const paragrafo1 = document.createElement("p");
+  lastDiv.appendChild(paragrafo1);
+  paragrafo1.textContent = "Il computer ha vinto..."
+  }
+
+  else if (playerChoice === "") {
+  const paragrafo3 = document.createElement("p");
+  lastDiv.appendChild(paragrafo3);
+  paragrafo3.textContent = "Non hai effettuato alcuna scelta..."
+  }
+  
+  else {
+  const paragrafo2 = document.createElement("p");
+  lastDiv.appendChild(paragrafo2);
+  paragrafo2.textContent = "Hai vinto!"
+  }
+  document.querySelector(".play").disabled = true;
+
+
+}
+
+
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
