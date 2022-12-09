@@ -151,16 +151,10 @@ SMARTPHONE
     .game-container{
         flex-direction: column;
     }
-
     .typed-out-text{
         font-size: smaller;
-        content: "Sborra";
     }
     .typed-out-text2{
         font-size: smaller
-    }
-
-    .container {
-
     }
 }
